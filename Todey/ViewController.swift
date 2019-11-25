@@ -15,7 +15,7 @@ class ViewController: UITableViewController {
         
     }
 
-    let itemArray = ["Find Mike", "Ride a Bike", "Fly a kite"]
+    var itemArray = ["Find Mike", "Ride a Bike", "Fly a kite"]
     
     //MARK: - TableView DataSource Methods
     
@@ -47,6 +47,35 @@ class ViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
+    
+    
+//MARK: - ADD NEW ITEMS
+    
+    @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
+        
+        var textField = UITextField()
+        
+        let alert = UIAlertController(title: "Add New Todoey Item", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            self.itemArray.append(textField.text!)
+            self.tableView.reloadData()
+            
+        }
+        alert.addTextField { (alertTextField) in
+            alertTextField.placeholder = "Create New Item"
+            textField = alertTextField
+            
+        }
+        
+            alert.addAction(action)
+            
+            self.present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    
     
     
 }
